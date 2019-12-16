@@ -9,12 +9,12 @@ public class OneShot : Shot
     [SerializeField]
     private Ball ballOriginal = null;
 
-    public override void Do(Vector2 position, Vector2 direction, float speed, int damage)
+    public override IEnumerator Do(Vector2 position, Vector2 direction, float speed, int damage)
     {
-        Ball ball = Pool.OfBehaviour(ballOriginal, 10)
-            .ActivateOne(position, Quaternion.identity);
+        Pool.OfBehaviour(ballOriginal)
+            .ActivateOne(position, Quaternion.identity)
+            .Active(direction, speed, damage);
 
-        ball.transform.position = position;
-        ball.Active(direction, speed, damage);
+        yield break;
     }
 }

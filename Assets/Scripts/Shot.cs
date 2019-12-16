@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Shot : ScriptableObject
 {
-	public abstract void Do(Vector2 position, Vector2 direction, float speed, int damage);
+	public abstract IEnumerator Do(Vector2 position, Vector2 direction, float speed, int damage);
 }
