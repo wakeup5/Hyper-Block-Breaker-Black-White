@@ -15,20 +15,13 @@ public class Shooter : MonoBehaviour
 
     private bool isShooting;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Shot();
-        }
-    }
+    public event System.Action OnShotEnd;
 
-    private IEnumerator ShotRoutine()
+    private IEnumerator ShotRoutine(Vector2 direction, int damage)
     {
         isShooting = true;
 
         Vector2 position = transform.position;
-        Vector2 direction = transform.up;
 
         foreach (var shot in shots)
         {
@@ -37,9 +30,10 @@ public class Shooter : MonoBehaviour
         }
 
         isShooting = false;
+        OnShotEnd?.Invoke();
     }
 
-    public void Shot()
+    public void Shot(Vector2 direction, int damage)
     {
         if (isShooting)
         {
@@ -47,6 +41,6 @@ public class Shooter : MonoBehaviour
             return;
         }
 
-        StartCoroutine(ShotRoutine());
+        StartCoroutine(ShotRoutine(direction, damage));
     }
 }

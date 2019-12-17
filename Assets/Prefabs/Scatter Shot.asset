@@ -15,5 +15,5 @@ MonoBehaviour:
   ballOriginal: {fileID: 8963824035928804482, guid: 5972c6ebf53833b45a0b09e6da9500db,
     type: 3}
   ballCount: 5
-  isRandomAngle: 1
-  angle: 45
+  isRandomAngle: 0
+  angle: 5

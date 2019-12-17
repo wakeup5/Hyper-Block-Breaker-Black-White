@@ -7,7 +7,7 @@ using Waker;
 public class ScatterShot : Shot
 {
     [SerializeField]
-    private Ball ballOriginal;
+    private ElectricBall ballOriginal;
 
     [SerializeField]
     private int ballCount;

@@ -7,7 +7,7 @@ using Waker;
 public class OneShot : Shot
 {
     [SerializeField]
-    private Ball ballOriginal = null;
+    private ElectricBall ballOriginal = null;
 
     public override IEnumerator Do(Vector2 position, Vector2 direction, float speed, int damage)
     {
