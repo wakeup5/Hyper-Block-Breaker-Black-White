@@ -24,12 +24,12 @@ TagManager:
   - UI
   - 
   - 
-  - Ball
+  - Black Ball
+  - White Ball
   - Walls
-  - Floor
-  - 
-  - 
-  - 
+  - Black Block
+  - White Block
+  - Item
   - 
   - 
   - 

@@ -1,46 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Waker;
+
+public enum ShotType
+{
+    Black,
+    White
+}
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField]
-    private List<Shot> shots;
-
     [SerializeField]
     private float shotDelay;
 
     [SerializeField]
     private float ballSpeed;
 
+    [SerializeField]
+    private ElectricBall white;
+
+    [SerializeField]
+    private ElectricBall black;
+
     private bool isShooting;
 
-    public event System.Action OnShotEnd;
-
-    private IEnumerator ShotRoutine(Vector2 direction, int damage)
+    private IEnumerator ShotRoutine(Vector2 direction, int damage, int count, ShotType type = ShotType.Black)
     {
         isShooting = true;
 
         Vector2 position = transform.position;
 
-        foreach (var shot in shots)
+        for (int i = 0; i < count; i++)
         {
-            yield return shot.Do(position, direction, ballSpeed, 1);
+            Pool.OfBehaviour(type == ShotType.Black ? black : white)
+                .ActivateOne(position, Quaternion.identity)
+                .Active(direction, ballSpeed, damage);
+
             yield return new WaitForSeconds(shotDelay);
         }
 
         isShooting = false;
-        OnShotEnd?.Invoke();
     }
 
-    public void Shot(Vector2 direction, int damage)
+    public IEnumerator Shot(Vector2 direction, int damage, int count, ShotType type = ShotType.Black)
     {
         if (isShooting)
         {
             Debug.Log("Aleady Shooting.");
-            return;
+            yield break;
         }
 
-        StartCoroutine(ShotRoutine(direction, damage));
+        yield return ShotRoutine(direction, damage, count, type);
     }
 }

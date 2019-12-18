@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-	private void OnCollisionEnter2D(Collision2D collision)
+	private bool isRecord;
+	private Vector2 pos;
+
+	public void BeginHitRecord()
 	{
-		if (collision.gameObject.GetComponent<ElectricBall>())
+		isRecord = true;
+	}
+
+	public void Hit(Vector2 pos)
+	{
+		if (isRecord)
 		{
-			collision.gameObject.SetActive(false);
+			this.pos = pos;
+			isRecord = false;
 		}
+	}
+
+	public Vector2 EndHitRecord()
+	{
+		return pos;
 	}
 }

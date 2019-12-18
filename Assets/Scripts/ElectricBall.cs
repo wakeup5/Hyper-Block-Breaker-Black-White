@@ -62,7 +62,7 @@ public class ElectricBall : MonoBehaviour
         positions.Add(pos);
 
         int hitCount = 0;
-        do
+        while (hitCount < maxHitCount)
         {
             hit = Physics2D.Raycast(pos, dir, float.MaxValue, collisionLayer);
 
@@ -76,6 +76,13 @@ public class ElectricBall : MonoBehaviour
                 block.TakeDamage(damage);
             }
 
+            Item item = hit.collider?.GetComponent<Item>();
+
+            if (item)
+            {
+                item.TakeDamage(damage);
+            }
+
             positions.Add(pos);
 
             hitCount++;
@@ -84,10 +91,19 @@ public class ElectricBall : MonoBehaviour
             lineRenderer.SetPosition(0, positions[positions.Count - 2]);
             lineRenderer.SetPosition(1, positions[positions.Count - 1]);
 
-            yield return new WaitForSeconds(0.05f);
-        }
-        while (!hit.collider?.GetComponent<Floor>() && hitCount < maxHitCount);
+            yield return new WaitForSeconds(0.075f);
 
+            Floor floor = hit.collider?.GetComponent<Floor>();
+            if (floor != null)
+            {
+                floor.Hit(pos);
+                break;
+            }
+        }
+        // while (!hit.collider?.GetComponent<Floor>() && hitCount < maxHitCount);
+
+        //lineRenderer.positionCount = positions.Count;
+        //lineRenderer.SetPositions(positions.ToArray());
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, positions[positions.Count - 2]);
         lineRenderer.SetPosition(1, positions[positions.Count - 1]);
