@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -30,15 +32,26 @@ public class GameController : MonoBehaviour
     private TextMesh stageText;
 
     [SerializeField]
-    private TextMesh failedText;
+    private GameObject failedWindow;
+
+    [SerializeField]
+    private Button tryAgainButton;
+
+    [SerializeField]
+    private Button gotoMainButton;
 
     [SerializeField]
     private LineRenderer lineRenderer;
 
+    [SerializeField]
+    private AdManager adManager;
+
     private bool hasControl = false;
-    private int stage = 0;
+    private int stage = 1;
     private int shotCount = 1;
     private int damage = 1;
+
+    private bool isTryAgain;
 
     private Vector2? downPos;
     private Vector2? dragPos;
@@ -46,14 +59,35 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
         powerText.text = damage + " Power";
         shotCountText.text = "Shot " + shotCount;
         stageText.text = "";
-        failedText.text = "";
+        failedWindow.SetActive(false);
 
-        StartCoroutine(StateRoutine());
+        isTryAgain = false;
 
         Item.OnHit += Item_OnHit;
+
+        tryAgainButton.onClick.AddListener(() =>
+        {
+            adManager.UserChoseToWatchAd();
+        });
+
+        gotoMainButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Title");
+        });
+
+        StartCoroutine(StateRoutine());
+    }
+
+    public void TryAgain()
+    {
+        isTryAgain = true;
+        blockManager.DestroyBlocks(9f);
+        StartCoroutine(StateRoutine());
     }
 
     private void OnDestroy()
@@ -120,17 +154,17 @@ public class GameController : MonoBehaviour
                 dir = (dragPos.Value - downPos.Value).normalized;
             }
         }
-
     }
 
     private IEnumerator StateRoutine()
     {
         Vector2 pos = shooter.transform.position;
+        
+        failedWindow.SetActive(false);
 
         while (true)
         {
-            stage++;
-            stageText.text = stage + "\nStage";
+            stageText.text = stage + "\nLevel";
             ShotType type = (ShotType)(stage % 2);
 
             // initialize
@@ -169,9 +203,21 @@ public class GameController : MonoBehaviour
             whiteSprite.gameObject.SetActive(false);
 
             yield return new WaitForSeconds(1f);
+
+            stage++;
+            if (PlayerPrefs.GetInt("High Stage", 1) < stage)
+            {
+                PlayerPrefs.SetInt("High Stage", stage);
+            }
         }
 
-        // 
-        failedText.text = "You're Failed.";
+        // Fail.
+        failedWindow.gameObject.SetActive(true);
+        if (isTryAgain)
+        {
+            tryAgainButton.gameObject.SetActive(false);
+        }
+
+        adManager.GameOver();
     }
 }

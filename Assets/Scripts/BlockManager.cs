@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -70,7 +71,7 @@ public class BlockManager : MonoBehaviour
         
         for (int i = 0; i < column; i++)
         {
-            int r = Random.Range(0, 10);
+            int r = UnityEngine.Random.Range(0, 10);
 
             if (r < blocks.Length)
             {
@@ -94,7 +95,7 @@ public class BlockManager : MonoBehaviour
 
         for (int i = 1; i < nums.Count; i++)
         {
-            int n = Random.Range(1, nums.Count);
+            int n = UnityEngine.Random.Range(1, nums.Count);
             int? t = nums[0];
             nums[0] = nums[n];
             nums[n] = t;
@@ -127,7 +128,18 @@ public class BlockManager : MonoBehaviour
         yield break;
     }
 
-    public float MinPosition()
+	public void DestroyBlocks(float v)
+	{
+		for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            if (transform.GetChild(i).position.y < v)
+            {
+                transform.GetChild(i).SendMessage("TakeDamage", 99999999);
+            }
+        }
+	}
+
+	public float MinPosition()
     {
         float min = float.MaxValue;
         for (int i = 0; i < transform.childCount; i++)
