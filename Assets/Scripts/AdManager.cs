@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class AdManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameController gameController;
+   // [SerializeField]
+    //private GameController gameController;
 
-    private RewardedAd rewardedAd;
+    //private RewardedAd rewardedAd;
     private InterstitialAd interstitial;
 
     public void Start()
     {
-        CreateAndLoadRewardedAd();
+        //CreateAndLoadRewardedAd();
         RequestInterstitial();
     }
 
-    public void GameOver()
+    public void TryAgain()
     {
         if (this.interstitial.IsLoaded())
         {
@@ -55,6 +55,7 @@ public class AdManager : MonoBehaviour
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);        
     }
+
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleAdLoaded event received");
@@ -81,73 +82,73 @@ public class AdManager : MonoBehaviour
         MonoBehaviour.print("HandleAdLeavingApplication event received");
     }
 
-    public void CreateAndLoadRewardedAd()
-    {
-#if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-6474563713628422/7607727167";
-#elif UNITY_IPHONE
-        string adUnitId = "unexpected_platform";
-#else
-        string adUnitId = "unexpected_platform";
-#endif
+//    public void CreateAndLoadRewardedAd()
+//    {
+//#if UNITY_ANDROID
+//        string adUnitId = "ca-app-pub-6474563713628422/7607727167";
+//#elif UNITY_IPHONE
+//        string adUnitId = "unexpected_platform";
+//#else
+//        string adUnitId = "unexpected_platform";
+//#endif
 
-        this.rewardedAd = new RewardedAd(adUnitId);
+//        this.rewardedAd = new RewardedAd(adUnitId);
 
-        this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
-        this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
-        this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
+//        this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+//        this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+//        this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the rewarded ad with the request.
-        this.rewardedAd.LoadAd(request);
-    }
+//        // Create an empty ad request.
+//        AdRequest request = new AdRequest.Builder().Build();
+//        // Load the rewarded ad with the request.
+//        this.rewardedAd.LoadAd(request);
+//    }
 
-    public void HandleRewardedAdLoaded(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleRewardedAdLoaded event received");
-    }
+//    public void HandleRewardedAdLoaded(object sender, EventArgs args)
+//    {
+//        MonoBehaviour.print("HandleRewardedAdLoaded event received");
+//    }
 
-    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
-    {
-        MonoBehaviour.print(
-            "HandleRewardedAdFailedToLoad event received with message: "
-                             + args.Message);
-    }
+//    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
+//    {
+//        MonoBehaviour.print(
+//            "HandleRewardedAdFailedToLoad event received with message: "
+//                             + args.Message);
+//    }
 
-    public void HandleRewardedAdOpening(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleRewardedAdOpening event received");
-    }
+//    public void HandleRewardedAdOpening(object sender, EventArgs args)
+//    {
+//        MonoBehaviour.print("HandleRewardedAdOpening event received");
+//    }
 
-    public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
-    {
-        MonoBehaviour.print(
-            "HandleRewardedAdFailedToShow event received with message: "
-                             + args.Message);
-    }
+//    public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
+//    {
+//        MonoBehaviour.print(
+//            "HandleRewardedAdFailedToShow event received with message: "
+//                             + args.Message);
+//    }
 
-    public void HandleRewardedAdClosed(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleRewardedAdClosed event received");
-    }
+//    public void HandleRewardedAdClosed(object sender, EventArgs args)
+//    {
+//        MonoBehaviour.print("HandleRewardedAdClosed event received");
+//    }
 
-    public void HandleUserEarnedReward(object sender, Reward args)
-    {
-        string type = args.Type;
-        double amount = args.Amount;
-        MonoBehaviour.print(
-            "HandleRewardedAdRewarded event received for "
-                        + amount.ToString() + " " + type);
+//    public void HandleUserEarnedReward(object sender, Reward args)
+//    {
+//        string type = args.Type;
+//        double amount = args.Amount;
+//        MonoBehaviour.print(
+//            "HandleRewardedAdRewarded event received for "
+//                        + amount.ToString() + " " + type);
 
-        gameController.TryAgain();
-    }
+//        gameController.TryAgain();
+//    }
 
-    public void UserChoseToWatchAd()
-    {
-        if (this.rewardedAd.IsLoaded())
-        {
-            this.rewardedAd.Show();
-        }
-    }
+//    public void UserChoseToWatchAd()
+//    {
+//        if (this.rewardedAd.IsLoaded())
+//        {
+//            this.rewardedAd.Show();
+//        }
+//    }
 }

@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMesh: {fileID: 2275819725834339362}
   maxHP: 10
+  destroyEffect: {fileID: 9196052790866523499, guid: 61208f796fc2b78409041df2b4d010f5,
+    type: 3}
 --- !u!58 &7254846524906288199
 CircleCollider2D:
   m_ObjectHideFlags: 0

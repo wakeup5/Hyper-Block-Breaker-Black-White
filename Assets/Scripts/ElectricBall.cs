@@ -13,6 +13,9 @@ public class ElectricBall : MonoBehaviour
     [SerializeField]
     private int maxHitCount = 10;
 
+    [SerializeField]
+    private GameObject hitEffect;
+
     public Vector2 direction;
     public float speed;
     public int damage;
@@ -68,6 +71,8 @@ public class ElectricBall : MonoBehaviour
 
             pos = hit.point + hit.normal * 0.005f;
             dir = Vector2.Reflect(dir, hit.normal);
+
+            Instantiate(hitEffect, pos, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.zero, hit.normal)));
 
             Block block = hit.collider?.GetComponent<Block>();
 

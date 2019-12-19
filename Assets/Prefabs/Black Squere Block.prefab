@@ -217,3 +217,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMesh: {fileID: 5684071564945346000}
   maxHP: 10
+  destroyEffect: {fileID: 9196052790866523499, guid: 61208f796fc2b78409041df2b4d010f5,
+    type: 3}

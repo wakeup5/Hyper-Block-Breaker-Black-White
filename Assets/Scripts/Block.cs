@@ -13,6 +13,9 @@ public class Block : MonoBehaviour
     [SerializeField]
     private int maxHP;
 
+    [SerializeField]
+    private GameObject destroyEffect;
+
     private int currentHP;
 
     private void Awake()
@@ -47,6 +50,9 @@ public class Block : MonoBehaviour
         {
             OnBlockDestroy?.Invoke(this);
             GetComponent<Collider2D>().enabled = false;
+
+            Instantiate(destroyEffect, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }

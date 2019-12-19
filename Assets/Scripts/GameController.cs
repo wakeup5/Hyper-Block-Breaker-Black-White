@@ -72,7 +72,8 @@ public class GameController : MonoBehaviour
 
         tryAgainButton.onClick.AddListener(() =>
         {
-            adManager.UserChoseToWatchAd();
+            adManager.TryAgain();
+            TryAgain();
         });
 
         gotoMainButton.onClick.AddListener(() =>
@@ -217,7 +218,5 @@ public class GameController : MonoBehaviour
         {
             tryAgainButton.gameObject.SetActive(false);
         }
-
-        adManager.GameOver();
     }
 }

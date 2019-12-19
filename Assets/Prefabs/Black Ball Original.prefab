@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifeTime: 0.1
   maxHitCount: 50
+  hitEffect: {fileID: 1242243692094713974, guid: 545a22048ce497d4a8dfd9d3695c1beb,
+    type: 3}
   direction: {x: 0, y: 0}
   speed: 0
   damage: 0

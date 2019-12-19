@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6071945220116376861}
   - component: {fileID: 3506620279554416701}
   m_Layer: 9
-  m_Name: Whote Ball Original
+  m_Name: White Ball Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifeTime: 0.1
   maxHitCount: 50
+  hitEffect: {fileID: 1242243692094713974, guid: 545a22048ce497d4a8dfd9d3695c1beb,
+    type: 3}
   direction: {x: 0, y: 0}
   speed: 0
   damage: 0

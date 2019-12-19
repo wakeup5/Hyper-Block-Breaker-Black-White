@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMesh: {fileID: 8254450809393534270}
   maxHP: 10
+  destroyEffect: {fileID: 9196052790866523499, guid: 61208f796fc2b78409041df2b4d010f5,
+    type: 3}
 --- !u!1 &8254450809393534268
 GameObject:
   m_ObjectHideFlags: 0

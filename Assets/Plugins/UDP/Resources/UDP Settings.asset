@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -107981364, guid: 741884b37a0234d86bb740e55081cd5f, type: 3}
+  m_Name: UDP Settings
+  m_EditorClassIdentifier: 
+  UnityProjectID: da68d0ce-c110-4071-b8c8-039d0c4a9336
+  UnityClientID: OHzZfmY9wTVFnC0cy1cXvQ
+  UnityClientKey: nVTVTsNo97G4GVXajzmFV6T1ozrJZ0_Tohci3RuT5K4
+  UnityClientRSAPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgcEC/ZIlHo7eBc21uFJyF9M3ivroEpMt6CqsP+6Gs52lHrHqZuMVgaodkgdPg6KlOVAKt+oALPm5KVt4ayy2XZUfYfqU63bsL58Mvwb8DiSZR3Zy5vhfp14qvPa2SOKGD05BRnBlJHwT+u5v5O/02Jhk5Cnj7m5EMfVsH87+0nqc9d36fXCpk/piAYR3nvqN/TP4RjTSFzzY9oYudjl2ZL3QT7seQDihgqWjHKGYPwqSyNDhZskUlCwAZ8aiMtp1dyu/0qa9pzONC/6u4ZeiFY3LSm1YMRX82Cm7ihGZVDY1+zWhD859aSXwjI1yrCPRY0MyFpnBEmiFZYcKGsSF7wIDAQAB
+  AppName: Hyper Block Breaker Black and White
+  AppSlug: 4e21793c-34ab-4f32-8f01-504f846d4bd5
+  AppItemId: 5dfa30822d033d001f8d8377
+  Permission: 
