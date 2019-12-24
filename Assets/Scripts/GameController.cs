@@ -42,10 +42,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private LineRenderer lineRenderer;
-
-    [SerializeField]
-    private AdManager adManager;
-
+    
     private bool hasControl = false;
     private int stage = 1;
     private int shotCount = 1;
@@ -70,10 +67,13 @@ public class GameController : MonoBehaviour
 
         Item.OnHit += Item_OnHit;
 
+        AdManager.Instance.RequestInterstitial();
         tryAgainButton.onClick.AddListener(() =>
         {
-            adManager.TryAgain();
+            Time.timeScale = 0f;
+            AdManager.Instance.ShowInterstitial();
             TryAgain();
+            Time.timeScale = 1f;
         });
 
         gotoMainButton.onClick.AddListener(() =>

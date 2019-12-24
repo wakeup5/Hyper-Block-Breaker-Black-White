@@ -134,7 +134,7 @@ public class BlockManager : MonoBehaviour
         {
             if (transform.GetChild(i).position.y < v)
             {
-                transform.GetChild(i).SendMessage("TakeDamage", 99999999);
+                transform.GetChild(i).SendMessage("Destroy");
             }
         }
 	}

@@ -56,4 +56,11 @@ public class Block : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Destroy()
+    {
+        OnBlockDestroy?.Invoke(this);
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject);
+    }
 }
