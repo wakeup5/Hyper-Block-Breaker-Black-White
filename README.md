@@ -5,3 +5,4 @@
 Google Play Store: https://play.google.com/store/apps/details?id=me.waker.hbbbw
 
 ## Screen shots
+[[https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FNT7z7%2FbtqAJw3R0B3%2FbNhSJWPvpFnsknGoqZUG20%2Fimg.png]]
