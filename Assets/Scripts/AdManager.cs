@@ -4,11 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AdManager : MonoBehaviour
 {
     private InterstitialAd interstitial;
     private BannerView bannerView;
+
+    [SerializeField] private Button removeAdButton;
 
     public static AdManager Instance { get; private set; }
 
@@ -30,7 +33,12 @@ public class AdManager : MonoBehaviour
 
     public void Start()
     {
-        RequestBanner();
+        if (PlayerPrefs.GetInt("RemoveAD", 0) == 0)
+        {
+            RequestBanner();
+        }
+
+        removeAdButton.gameObject.SetActive(PlayerPrefs.GetInt("RemoveAD", 0) == 0);
     }
 
     private void OnDestroy()
@@ -43,9 +51,12 @@ public class AdManager : MonoBehaviour
    
     public void ShowInterstitial()
     {
-        if (this.interstitial.IsLoaded())
+        if (PlayerPrefs.GetInt("RemoveAD", 0) == 0)
         {
-            this.interstitial.Show();
+            if (this.interstitial.IsLoaded())
+            {
+                this.interstitial.Show();
+            }
         }
     }
 
@@ -80,6 +91,12 @@ public class AdManager : MonoBehaviour
         AdRequest request = new AdRequest.Builder().AddTestDevice("7B12044D2265F6456FCECD97E6126E15").Build();
 
         this.bannerView.LoadAd(request);
+    }
+
+    public void RemoveAD()
+    {
+        PlayerPrefs.SetInt("RemoveAD", 1);
+        removeAdButton.gameObject.SetActive(false);
     }
 
 }
